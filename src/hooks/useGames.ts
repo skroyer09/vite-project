@@ -12,7 +12,7 @@ interface GamesResponse {
 }
 
 const useGames = () => {
-    const [games, setGames] = useState<Game[]>([]);
+  const [games, setGames] = useState<Game[]>([]);
   const [error, setError] = useState("");
 
   useEffect(() => {
@@ -23,6 +23,6 @@ const useGames = () => {
   }, []);
 
   return { games, error };
-}
+};
 
 export default useGames;
