@@ -3,10 +3,12 @@ import useGames from "../hooks/useGames";
 import GameCard from "./gameCard";
 
 const GameGrid = () => {
-  const { games, error } = useGames();
+  const { games, error, isLoading } = useGames();
   return (
     <SimpleGrid columns={{ sm: 1, md: 2, lg: 3, xl: 4 }} spacing={10} padding={10}>
       {error && <p>{error}</p>}
+
+      {isLoading && <p>Loading...</p>}
 
       {games.map((game) => (
         <GameCard key={game.id} game={game} />

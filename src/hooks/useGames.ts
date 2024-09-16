@@ -22,15 +22,19 @@ interface GamesResponse {
 const useGames = () => {
   const [games, setGames] = useState<Game[]>([]);
   const [error, setError] = useState("");
+  const [isLoading, setisLoading] = useState(false);
 
   useEffect(() => {
+    setisLoading(true);
+
     apiClient
       .get<GamesResponse>("/games")
       .then((response) => setGames(response.data.results))
-      .catch((error) => setError(error.message));
+      .catch((error) => setError(error.message))
+      .finally(() => setisLoading(false));
   }, []);
 
-  return { games, error };
+  return { games, error, isLoading };
 };
 
 export default useGames;
